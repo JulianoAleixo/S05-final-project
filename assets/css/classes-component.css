@@ -1,0 +1,78 @@
+#classes {
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.class {
+    background-color: white;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-default);
+    color: var(--color-base-content-2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    box-size: border-box;
+}
+
+.class p {
+    margin: 0;
+}
+
+.class-local, 
+.class-hour {
+    display: flex;
+    gap: 4px;
+}
+
+i {
+    color: var(--color-primary);
+}
+
+.class-title {
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+}
+
+.p_label {
+    font-size: 13px;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.classes-infos {
+    display: flex;
+    gap: 12px;
+}
+
+.exam-label,
+.frequency-label,
+.grade-label {
+    background-color: var(--color-primary);
+    padding: 7px 15px;
+    border-radius: 500px;
+    text-align: center;
+}
+
+.exam-label {
+    width: calc(100% - 24px);
+}
+
+.low-grade {
+    background-color: var(--error);
+}
+
+.medium-grade {
+    background-color: var(--warning);
+}
+
+.high-grade {
+    background-color: var(--success);
+}
