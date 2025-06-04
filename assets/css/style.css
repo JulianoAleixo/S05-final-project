@@ -38,6 +38,10 @@ body {
     overflow-x: hidden;
 }
 
+button:hover {
+    filter: brightness(80%);
+}
+
 /* -- Header -- */
 
 #header {
@@ -66,6 +70,11 @@ body {
     width: auto;
     max-height: 28px;
     fill: var(--color-content);
+}
+
+.header-hidden-block {
+    height: 60px; 
+    width: 100%;
 }
 
 /* -- Content -- */
@@ -303,12 +312,24 @@ footer a {
     justify-content: center;
     align-items: center;
     gap: 8px;
+    width: max-content;
     max-width: 196px;
+}
+
+.redirect-container.logout {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.redirect-container.logout button {
+    background: var(--color-secondary);
 }
 
 .redirect-container button {
     width: 100%;
-    padding: 8px;
+    padding: 8px 12px;
     font-size: 16px;
     background: var(--color-primary);
     color: var(--color-content);
@@ -322,8 +343,58 @@ footer a {
     justify-content: center;
 }
 
-.redirect-container button:hover {
-    background: var(--color-secondary);
+
+/* Login */
+#login-page {
+    height: 100vh;
+    width: 100%;
+    background: var(--color-primary);
+    margin-bottom: -16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background: var(--color-content);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 16px 36px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-default);
+}
+
+.login-container .svg_logo_inatel {
+    fill: var(--color-base-content-2);
+    max-height: 36px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    color: var(--color-base-content-2);
+}
+
+.input input {
+    font-size: 16px;
+    padding: 4px 8px;
+}
+
+.input label {
+    font-size: 18px;
+}
+
+.login-container button {
+    width: min-content;
+    margin: 0 auto;
+    padding: 8px 24px;
+    background: var(--color-primary);
+    border: none;
+    color: var(--color-content);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 100ms ease-in-out;
 }
 
 /* sm screen */

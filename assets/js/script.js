@@ -201,3 +201,39 @@ carousel.addEventListener("touchend", (e) => {
 });
 
 createCards(events);
+
+/* Login */
+const users = [
+    { registration: "501", password: "123" },
+    { registration: "123", password: "123" },
+];
+
+function handleLogin(event) {
+    event.preventDefault();
+
+    const registration = document.getElementById("registrationInput").value;
+    const password = document.getElementById("passwordInput").value;
+
+    const userFound = users.find(
+        (user) =>
+            user.registration === registration && user.password === password
+    );
+
+    if (userFound) {
+        document.querySelector("#login-page").style.display = "none";
+        document.querySelector("#sidebar").style.display = "block";
+        document.querySelector("#header").style.display = "flex";
+        document.querySelector(".header-hidden-block").style.display = "block";
+        document.querySelector("#home-page").style.display = "flex";
+    } else {
+        document.getElementById("login-error").style.display = "block";
+    }
+}
+
+function handleLogout() {
+    document.querySelector("#login-page").style.display = "flex";
+    document.querySelector("#sidebar").style.display = "none";
+    document.querySelector("#header").style.display = "none";
+    document.querySelector(".header-hidden-block").style.display = "none";
+    document.querySelector("#home-page").style.display = "none";
+}
