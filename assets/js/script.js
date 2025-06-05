@@ -225,6 +225,7 @@ function handleLogin(event) {
         document.querySelector("#header").style.display = "flex";
         document.querySelector(".header-hidden-block").style.display = "block";
         document.querySelector("#home-page").style.display = "flex";
+        document.querySelector("#events-page").style.display = "none";
     } else {
         document.getElementById("login-error").style.display = "block";
     }
@@ -236,4 +237,15 @@ function handleLogout() {
     document.querySelector("#header").style.display = "none";
     document.querySelector(".header-hidden-block").style.display = "none";
     document.querySelector("#home-page").style.display = "none";
+    document.querySelector("#events-page").style.display = "none";
+}
+
+/* Events */
+function navigateToEventPage() {
+    document.querySelector("#login-page").style.display = "none";
+    document.querySelector("#header").style.display = "flex";
+    document.querySelector(".header-hidden-block").style.display = "block";
+    document.querySelector("#home-page").style.display = "none";
+    document.querySelector("#events-page").style.display = "flex";
+    toggleMenu();
 }

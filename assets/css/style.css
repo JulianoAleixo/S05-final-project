@@ -73,7 +73,7 @@ button:hover {
 }
 
 .header-hidden-block {
-    height: 60px; 
+    height: 60px;
     width: 100%;
 }
 
@@ -343,7 +343,6 @@ footer a {
     justify-content: center;
 }
 
-
 /* Login */
 #login-page {
     height: 100vh;
@@ -366,7 +365,7 @@ footer a {
 }
 
 .login-container .svg_logo_inatel {
-    fill: var(--color-base-content-2);
+    fill: var(--color-primary);
     max-height: 36px;
 }
 
@@ -396,6 +395,79 @@ footer a {
     font-size: 16px;
     transition: all 100ms ease-in-out;
 }
+
+/* Events */
+#events-page {
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.events-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.events-container h2 {
+    font-size: 24px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    border-radius: 8px;
+    background: var(--color-base-1);
+    box-shadow: var(--shadow-default);
+    position: relative;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    position: relative;
+}
+
+.responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+    table-layout: fixed;
+}
+
+.responsive-table thead {
+    background-color: var(--color-primary);
+    color: white;
+    text-align: left;
+}
+
+.responsive-table th,
+.responsive-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--color-base-1);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.max-col {
+    max-width: 160px;
+}
+
+.action-col {
+    position: sticky;
+    right: 0;
+    min-width: 120px;
+    z-index: 2;
+    text-align: left;
+    background: var(--color-primary);
+}
+
+td.action-col {
+    background: var(--color-base-1);
+}
+
 
 /* sm screen */
 @media (max-width: 640px) {

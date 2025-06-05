@@ -35,7 +35,7 @@
             </div>
 
             <div class="redirect-container">
-                <button>
+                <button onclick="navigateToEventPage()">
                     <i class="bi bi-calendar-event"></i>
                     Eventos
                 </button>
@@ -95,7 +95,7 @@
             </section>
         </main>
 
-        <section id="login-page">
+        <main id="login-page">
             <form class="login-container" onsubmit="handleLogin(event)">
                 <svg
                     class="svg_logo_inatel"
@@ -129,7 +129,59 @@
             </form>
 
             <div></div>
-        </section>
+        </main>
+
+        <main id="events-page" style="display: none">
+            <section class="events-container">
+                <h2>Eventos</h2>
+                <div class="table-container">
+                    <div class="table-wrapper">
+                        <table class="responsive-table">
+                            <thead>
+                                <tr>
+                                    <th class="max-col">Nome</th>
+                                    <th class="max-col">Data</th>
+                                    <th class="max-col">Horário</th>
+                                    <th class="max-col">Local</th>
+                                    <th class="action-col">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="max-col">
+                                        Evento de Tecnologia muito longo que
+                                        deveria cortar
+                                    </td>
+                                    <td class="max-col">10/06/2025</td>
+                                    <td class="max-col">14:00</td>
+                                    <td class="max-col">
+                                        Auditório Central com nome muito extenso
+                                    </td>
+                                    <td class="action-col">
+                                        <button class="action-btn" title="Ver">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button
+                                            class="action-btn"
+                                            title="Editar"
+                                        >
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                        <button
+                                            class="action-btn"
+                                            title="Excluir"
+                                        >
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
 
         <footer id="footer">
             Copyright © 2025 - All right reserved <br />
