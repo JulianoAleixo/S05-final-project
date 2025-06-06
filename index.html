@@ -55,6 +55,7 @@
                 class="svg_logo_inatel"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="100 150 390 116"
+                onclick="navigateToHome()"
             >
                 <path
                     class="path_logo"
@@ -134,11 +135,13 @@
         <main id="events-page" style="display: none">
             <section class="events-container">
                 <h2>Eventos</h2>
+                
                 <div class="table-container">
                     <div class="table-wrapper">
                         <table class="responsive-table">
                             <thead>
                                 <tr>
+                                    <th class="hidden-col" hidden>Id</th>
                                     <th class="max-col">Nome</th>
                                     <th class="max-col">Data</th>
                                     <th class="max-col">Horário</th>
@@ -148,31 +151,31 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td hidden class="hidden-col event-id">01</td>
                                     <td class="max-col">
-                                        Evento de Tecnologia muito longo que
-                                        deveria cortar
+                                        CPG - Code Pizza & Glory
                                     </td>
-                                    <td class="max-col">10/06/2025</td>
-                                    <td class="max-col">14:00</td>
+                                    <td class="max-col">16/05/2025</td>
+                                    <td class="max-col">22:00</td>
                                     <td class="max-col">
-                                        Auditório Central com nome muito extenso
+                                        Inatel - Prédio 5, salão de eventos
                                     </td>
                                     <td class="action-col">
-                                        <button class="action-btn" title="Ver">
-                                            <i class="bi bi-eye"></i>
-                                        </button>
-                                        <button
-                                            class="action-btn"
-                                            title="Editar"
-                                        >
-                                            <i class="bi bi-pencil"></i>
-                                        </button>
-                                        <button
-                                            class="action-btn"
-                                            title="Excluir"
-                                        >
-                                            <i class="bi bi-trash"></i>
-                                        </button>
+                                        <button class="buy-button">Comprar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td hidden class="hidden-col event-id">01</td>
+                                    <td class="max-col">
+                                        CPG - Code Pizza & Glory
+                                    </td>
+                                    <td class="max-col">16/05/2025</td>
+                                    <td class="max-col">22:00</td>
+                                    <td class="max-col">
+                                        Inatel - Prédio 5, salão de eventos
+                                    </td>
+                                    <td class="action-col">
+                                        <button class="buy-button">Comprar</button>
                                     </td>
                                 </tr>
                                 
@@ -180,8 +183,18 @@
                         </table>
                     </div>
                 </div>
+                
+                <button class="my-tickets-button">
+                    Meus Ingressos
+                </button>
             </section>
         </main>
+
+        <!-- <main id="buy-event-page" style="display: none">
+            <section class="events-container">
+                <h2>Eventos</h2>
+            </section>
+        </main> -->
 
         <footer id="footer">
             Copyright © 2025 - All right reserved <br />

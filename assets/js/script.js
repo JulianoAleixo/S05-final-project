@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* Carousel */
-const events = [
+const eventsCarousel = [
     {
         id: 1,
         title: "Semana do Software 2025",
@@ -156,12 +156,12 @@ function updateCarousel() {
 }
 
 function nextCard() {
-    cardIndex = (cardIndex + 1) % events.length;
+    cardIndex = (cardIndex + 1) % eventsCarousel.length;
     updateCarousel();
 }
 
 function prevCard() {
-    cardIndex = (cardIndex - 1 + events.length) % events.length;
+    cardIndex = (cardIndex - 1 + eventsCarousel.length) % eventsCarousel.length;
     updateCarousel();
 }
 
@@ -200,7 +200,7 @@ carousel.addEventListener("touchend", (e) => {
     endX - startX > 50 && prevCard();
 });
 
-createCards(events);
+createCards(eventsCarousel);
 
 /* Login */
 const users = [
@@ -241,11 +241,68 @@ function handleLogout() {
 }
 
 /* Events */
+const events = [
+    {
+        id: "01",
+        name: "CPG - Code Pizza & Glory",
+        date: "16/05/2025",
+        hour: "22:00",
+        local: "Inatel - Prédio 5, salão de eventos",
+        description: "Um evento de codificação com pizza!",
+        price: 20,
+        remaining_tickets: 30,
+    },
+    {
+        id: "02",
+        name: "DevTalks Night",
+        date: "22/06/2025",
+        hour: "19:00",
+        local: "Inatel - Auditório A",
+        description: "Palestras com desenvolvedores experientes",
+        price: 10,
+        remaining_tickets: 12,
+    },
+];
+
+function renderEventsTable() {
+  const tbody = document.querySelector(".responsive-table tbody");
+  tbody.innerHTML = "";
+
+  events.forEach((event) => {
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td hidden class="hidden-col event-id">${event.id}</td>
+      <td class="max-col">${event.name}</td>
+      <td class="max-col">${event.date}</td>
+      <td class="max-col">${event.hour}</td>
+      <td class="max-col">${event.local}</td>
+      <td class="action-col">
+        <button class="buy-button">Comprar</button>
+      </td>
+    `;
+
+    tbody.appendChild(row);
+  });
+}
+
+
 function navigateToEventPage() {
     document.querySelector("#login-page").style.display = "none";
     document.querySelector("#header").style.display = "flex";
     document.querySelector(".header-hidden-block").style.display = "block";
     document.querySelector("#home-page").style.display = "none";
     document.querySelector("#events-page").style.display = "flex";
+    renderEventsTable();
+    toggleMenu();
+}
+
+
+function navigateToHome() {
+    document.querySelector("#login-page").style.display = "none";
+    document.querySelector("#header").style.display = "flex";
+    document.querySelector(".header-hidden-block").style.display = "block";
+    document.querySelector("#home-page").style.display = "flex";
+    document.querySelector("#events-page").style.display = "none";
     toggleMenu();
 }
