@@ -347,6 +347,7 @@ footer a {
 }
 
 /* Login */
+
 #login-page {
     height: 100vh;
     width: 100%;
@@ -634,8 +635,17 @@ td.action-col {
     color: #555;
 }
 
+#my-tickets-page {
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: calc(100vh - 60px);
+}
 
 /* -- Toast -- */
+
 #toast-container {
     position: fixed;
     top: calc(1rem + 60px);

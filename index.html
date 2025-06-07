@@ -35,6 +35,13 @@
             </div>
 
             <div class="redirect-container">
+                <button onclick="navigateToHome()">
+                    <i class="bi bi-house"></i>
+                    Início
+                </button>
+            </div>
+
+            <div class="redirect-container">
                 <button onclick="navigateToEventPage()">
                     <i class="bi bi-calendar-event"></i>
                     Eventos
@@ -138,7 +145,7 @@
 
                 <div class="table-container">
                     <div class="table-wrapper">
-                        <table class="responsive-table">
+                        <table class="responsive-table events-table">
                             <thead>
                                 <tr>
                                     <th class="hidden-col" hidden>Id</th>
@@ -154,7 +161,12 @@
                     </div>
                 </div>
 
-                <button class="my-tickets-button">Meus Ingressos</button>
+                <button
+                    class="my-tickets-button"
+                    onclick="navigateToMyTicketsPage()"
+                >
+                    Meus Ingressos
+                </button>
             </section>
         </main>
 
@@ -203,6 +215,34 @@
             </section>
         </main>
 
+        <main id="my-tickets-page" style="display: none">
+            <section class="my-tickets-container">
+                <h2>Meus ingressos</h2>
+
+                <div class="table-container">
+                    <div class="table-wrapper">
+                        <table class="responsive-table my-tickets-table">
+                            <thead>
+                                <tr>
+                                    <th class="hidden-col" hidden>Id</th>
+                                    <th class="max-col">Nome</th>
+                                    <th class="max-col">Data</th>
+                                    <th class="max-col">Horário</th>
+                                    <th class="max-col">Local</th>
+                                    <th class="action-col">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <button class="back-button" onclick="">
+                    <i class="bi bi-arrow-left"></i>Voltar
+                </button>
+            </section>
+        </main>
+
         <footer id="footer">
             Copyright © 2025 - All right reserved <br />
             <a
@@ -214,7 +254,7 @@
         </footer>
 
         <div id="toast-container"></div>
-        
+
         <script src="assets/js/script.js"></script>
         <script src="assets/js/classes-component.js"></script>
     </body>

@@ -227,6 +227,7 @@ function handleLogin(event) {
         document.querySelector("#home-page").style.display = "flex";
         document.querySelector("#events-page").style.display = "none";
         document.querySelector("#buy-ticket-page").style.display = "none";
+        document.querySelector("#my-tickets-page").style.display = "none";
 
         showToast("success", "Bem vindo!");
     } else {
@@ -242,6 +243,7 @@ function handleLogout() {
     document.querySelector("#home-page").style.display = "none";
     document.querySelector("#events-page").style.display = "none";
     document.querySelector("#buy-ticket-page").style.display = "none";
+    document.querySelector("#my-tickets-page").style.display = "none";
 }
 
 /* Events */
@@ -252,28 +254,39 @@ const events = [
         date: "16/05/2025",
         hour: "22:00",
         local: "Inatel - Prédio 5, salão de eventos",
-        description: "Um evento de codificação com pizza!",
-        price: 20,
-        remaining_tickets: 30,
-        image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800&h=400",
+        description: "Um evento de programação de games e muita pizza!",
+        price: 97,
+        remaining_tickets: 10,
+        image: "https://inatel.br/noticias/images/57658573af741ed37f89fe69e10bc20777c11dca69162c183816a03d9f2745e7_900.webp",
     },
     {
         id: "02",
-        name: "DevTalks Night",
-        date: "22/06/2025",
-        hour: "19:00",
-        local: "Inatel - Auditório A",
-        description: "Palestras com desenvolvedores experientes",
+        name: "Feira de Oportunidades",
+        date: "03/06/2025",
+        hour: "08:00",
+        local: "Inatel - Auditório",
+        description: "Palestras com profissionais.",
         price: 10,
         remaining_tickets: 0,
-        image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800&h=400",
+        image: "https://live.staticflickr.com/65535/53804705431_945766d1c6.jpg",
+    },
+    {
+        id: "03",
+        name: "Hacktown",
+        date: "01/08/2025",
+        hour: "08:00",
+        local: "ETE FMC - Teatro",
+        description: "Início do Hacktown",
+        price: 1500,
+        remaining_tickets: 50,
+        image: "https://engenharia360.com/wp-content/uploads/2024/05/HERO-Credenciamento-07.jpg",
     },
 ];
 const userTickets = [];
 let currentEventId = null;
 
-function renderEventsTable() {
-    const tbody = document.querySelector(".responsive-table tbody");
+function renderTable(table, events) {
+    const tbody = document.querySelector(`.${table}-table tbody`);
     tbody.innerHTML = "";
 
     events.forEach((evnt) => {
@@ -310,8 +323,21 @@ function navigateToEventPage() {
     document.querySelector("#home-page").style.display = "none";
     document.querySelector("#events-page").style.display = "flex";
     document.querySelector("#buy-ticket-page").style.display = "none";
-    renderEventsTable();
+    document.querySelector("#my-tickets-page").style.display = "none";
+    renderTable("events", events);
     toggleMenu();
+}
+
+function navigateToMyTicketsPage() {
+    document.querySelector("#login-page").style.display = "none";
+    document.querySelector("#header").style.display = "flex";
+    document.querySelector(".header-hidden-block").style.display = "block";
+    document.querySelector("#home-page").style.display = "none";
+    document.querySelector("#events-page").style.display = "none";
+    document.querySelector("#buy-ticket-page").style.display = "none";
+    document.querySelector("#my-tickets-page").style.display = "flex";
+    console.log(userTickets);
+    renderTable("my-tickets", userTickets);
 }
 
 function renderTicketPage(ticketId) {
@@ -350,6 +376,7 @@ function renderTicketPage(ticketId) {
     document.querySelector("#home-page").style.display = "none";
     document.querySelector("#events-page").style.display = "none";
     document.querySelector("#buy-ticket-page").style.display = "flex";
+    document.querySelector("#my-tickets-page").style.display = "none";
 }
 
 function navigateToBuyTicketPage(ticketId) {
@@ -394,7 +421,7 @@ document.querySelector("#payment-proof").addEventListener("change", (e) => {
     if (boughtEvent) {
         boughtEvent.remaining_tickets -= 1;
         userTickets.push(boughtEvent);
-        showToast("success", `Compra simulada com sucesso para o evento: ${boughtEvent.name}`);
+        showToast("success", `Compra simulada com sucesso.`);
     }
 
     e.target.value = "";
@@ -409,11 +436,11 @@ function navigateToHome() {
     document.querySelector("#home-page").style.display = "flex";
     document.querySelector("#events-page").style.display = "none";
     document.querySelector("#buy-ticket-page").style.display = "none";
+    document.querySelector("#my-tickets-page").style.display = "none";
     toggleMenu();
 }
 
 /* Toast */
-
 function showToast(type, message) {
     const toast = document.createElement("div");
     toast.className = `toast ${type}`;
