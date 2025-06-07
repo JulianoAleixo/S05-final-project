@@ -149,44 +149,7 @@
                                     <th class="action-col">Ação</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td hidden class="hidden-col event-id">
-                                        01
-                                    </td>
-                                    <td class="max-col">
-                                        CPG - Code Pizza & Glory
-                                    </td>
-                                    <td class="max-col">16/05/2025</td>
-                                    <td class="max-col">22:00</td>
-                                    <td class="max-col">
-                                        Inatel - Prédio 5, salão de eventos
-                                    </td>
-                                    <td class="action-col">
-                                        <button class="buy-button">
-                                            Comprar
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td hidden class="hidden-col event-id">
-                                        01
-                                    </td>
-                                    <td class="max-col">
-                                        CPG - Code Pizza & Glory
-                                    </td>
-                                    <td class="max-col">16/05/2025</td>
-                                    <td class="max-col">22:00</td>
-                                    <td class="max-col">
-                                        Inatel - Prédio 5, salão de eventos
-                                    </td>
-                                    <td class="action-col">
-                                        <button class="buy-button">
-                                            Comprar
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
@@ -227,7 +190,11 @@
 
                 <div class="qrcode-container">
                     <h3>Esse QR Code te dá acesso ao evento.</h3>
-                    <img class="qr-code" src="assets/images/qrcode.svg" alt="QR Code" />
+                    <img
+                        class="qr-code"
+                        src="assets/images/qrcode.svg"
+                        alt="QR Code"
+                    />
                 </div>
 
                 <button class="back-button" onclick="navigateToEventPage()">
@@ -245,6 +212,9 @@
                 >Juliano Moreira Aleixo - GES 501</a
             >
         </footer>
+
+        <div id="toast-container"></div>
+        
         <script src="assets/js/script.js"></script>
         <script src="assets/js/classes-component.js"></script>
     </body>

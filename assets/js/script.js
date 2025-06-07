@@ -227,8 +227,10 @@ function handleLogin(event) {
         document.querySelector("#home-page").style.display = "flex";
         document.querySelector("#events-page").style.display = "none";
         document.querySelector("#buy-ticket-page").style.display = "none";
+
+        showToast("success", "Bem vindo!");
     } else {
-        document.getElementById("login-error").style.display = "block";
+        showToast("error", "Matrícula ou senha inválidos.");
     }
 }
 
@@ -263,7 +265,7 @@ const events = [
         local: "Inatel - Auditório A",
         description: "Palestras com desenvolvedores experientes",
         price: 10,
-        remaining_tickets: 12,
+        remaining_tickets: 0,
         image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800&h=400",
     },
 ];
@@ -375,7 +377,7 @@ document.querySelector("#payment-proof").addEventListener("change", (e) => {
 
     const allowedTypes = ["image/png", "image/jpeg", "application/pdf"];
     if (!allowedTypes.includes(file.type)) {
-        alert("Tipo de arquivo inválido. Envie uma imagem ou PDF.");
+        showToast("error", "Arquivo inválido. Envie uma imagem ou PDF.");
         e.target.value = "";
         return;
     }
@@ -384,14 +386,15 @@ document.querySelector("#payment-proof").addEventListener("change", (e) => {
         (ticket) => ticket.id === currentEventId
     );
     if (alreadyBought) {
-        alert("Você já comprou esse ingresso.");
+        showToast("warning", "Você já comprou esse ingresso.");
         return;
     }
 
     const boughtEvent = events.find((ev) => ev.id === currentEventId);
     if (boughtEvent) {
+        boughtEvent.remaining_tickets -= 1;
         userTickets.push(boughtEvent);
-        alert(`Compra simulada com sucesso para o evento: ${boughtEvent.name}`);
+        showToast("success", `Compra simulada com sucesso para o evento: ${boughtEvent.name}`);
     }
 
     e.target.value = "";
@@ -407,4 +410,34 @@ function navigateToHome() {
     document.querySelector("#events-page").style.display = "none";
     document.querySelector("#buy-ticket-page").style.display = "none";
     toggleMenu();
+}
+
+/* Toast */
+
+function showToast(type, message) {
+    const toast = document.createElement("div");
+    toast.className = `toast ${type}`;
+
+    const icon = document.createElement("i");
+    icon.className =
+        {
+            success: "bi bi-check-circle",
+            warning: "bi bi-exclamation-triangle",
+            error: "bi bi-x-circle",
+        }[type] || "";
+
+    icon.style.marginRight = "8px";
+
+    const content = document.createElement("span");
+    content.textContent = message;
+
+    toast.appendChild(icon);
+    toast.appendChild(content);
+
+    const container = document.getElementById("toast-container");
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 4000);
 }

@@ -302,6 +302,7 @@ footer a {
     right: 8px;
     top: 8px;
     font-size: 20px;
+    cursor: pointer;
 }
 
 #sidebar h3 {
@@ -548,6 +549,7 @@ td.action-col {
 
 .event-info {
     margin: 16px 8px 0 8px;
+    color: var(--color-base-content-1)
 }
 
 .event-icon {
@@ -625,13 +627,74 @@ td.action-col {
     background-color: white;
 }
 
-/* Nome do arquivo */
 .file-name-display {
     display: block;
     margin-top: 10px;
     font-size: 0.9rem;
     color: #555;
 }
+
+
+/* -- Toast -- */
+#toast-container {
+    position: fixed;
+    top: calc(1rem + 60px);
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    z-index: 9999;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    min-width: 250px;
+    max-width: 300px;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: white;
+    box-shadow: var(--shadow-default);
+    animation: slideIn 0.4s ease, fadeOut 0.4s ease 3.6s;
+    opacity: 1;
+    position: relative;
+}
+
+.toast.success {
+    background-color: var(--success);
+    color: #fff;
+}
+
+.toast.error {
+    background-color: var(--error);
+    color: #fff;
+}
+
+.toast.warning {
+    background-color: var(--warning);
+    color: #fff;
+}
+
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
 
 /* sm screen */
 @media (max-width: 640px) {
