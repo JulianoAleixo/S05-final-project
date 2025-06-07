@@ -226,6 +226,7 @@ function handleLogin(event) {
         document.querySelector(".header-hidden-block").style.display = "block";
         document.querySelector("#home-page").style.display = "flex";
         document.querySelector("#events-page").style.display = "none";
+        document.querySelector("#buy-ticket-page").style.display = "none";
     } else {
         document.getElementById("login-error").style.display = "block";
     }
@@ -238,6 +239,7 @@ function handleLogout() {
     document.querySelector(".header-hidden-block").style.display = "none";
     document.querySelector("#home-page").style.display = "none";
     document.querySelector("#events-page").style.display = "none";
+    document.querySelector("#buy-ticket-page").style.display = "none";
 }
 
 /* Events */
@@ -251,6 +253,7 @@ const events = [
         description: "Um evento de codificação com pizza!",
         price: 20,
         remaining_tickets: 30,
+        image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800&h=400",
     },
     {
         id: "02",
@@ -261,31 +264,33 @@ const events = [
         description: "Palestras com desenvolvedores experientes",
         price: 10,
         remaining_tickets: 12,
+        image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800&h=400",
     },
 ];
+const userTickets = [];
+let currentEventId = null;
 
 function renderEventsTable() {
-  const tbody = document.querySelector(".responsive-table tbody");
-  tbody.innerHTML = "";
+    const tbody = document.querySelector(".responsive-table tbody");
+    tbody.innerHTML = "";
 
-  events.forEach((event) => {
-    const row = document.createElement("tr");
+    events.forEach((evnt) => {
+        const row = document.createElement("tr");
 
-    row.innerHTML = `
-      <td hidden class="hidden-col event-id">${event.id}</td>
-      <td class="max-col">${event.name}</td>
-      <td class="max-col">${event.date}</td>
-      <td class="max-col">${event.hour}</td>
-      <td class="max-col">${event.local}</td>
+        row.innerHTML = `
+      <td hidden class="hidden-col event-id">${evnt.id}</td>
+      <td class="max-col">${evnt.name}</td>
+      <td class="max-col">${evnt.date}</td>
+      <td class="max-col">${evnt.hour}</td>
+      <td class="max-col">${evnt.local}</td>
       <td class="action-col">
-        <button class="buy-button">Comprar</button>
+        <button class="buy-button" onClick="navigateToBuyTicketPage('${evnt.id}')">Comprar</button>
       </td>
     `;
 
-    tbody.appendChild(row);
-  });
+        tbody.appendChild(row);
+    });
 }
-
 
 function navigateToEventPage() {
     document.querySelector("#login-page").style.display = "none";
@@ -293,10 +298,70 @@ function navigateToEventPage() {
     document.querySelector(".header-hidden-block").style.display = "block";
     document.querySelector("#home-page").style.display = "none";
     document.querySelector("#events-page").style.display = "flex";
+    document.querySelector("#buy-ticket-page").style.display = "none";
     renderEventsTable();
     toggleMenu();
 }
 
+function navigateToBuyTicketPage(ticketId) {
+    const eventData = events.find((event) => event.id === ticketId);
+    if (!eventData) return;
+
+    currentEventId = ticketId;
+
+    document.querySelector("#buy-ticket-page h2").textContent = eventData.name;
+    document.querySelector("#buy-ticket-page .event-image").src =
+        eventData.image;
+    document.querySelector(
+        "#buy-ticket-page .event-image"
+    ).alt = `Imagem do evento ${eventData.name}`;
+
+    const infoDiv = document.querySelector("#buy-ticket-page .event-info");
+    infoDiv.innerHTML = `
+        <p>${eventData.description}</p>
+        <p>${eventData.remaining_tickets} ingressos restantes.</p>
+        <p class="event-details">
+            <div><i class="bi bi-calendar-event event-icon"></i> ${eventData.date} às ${eventData.hour}</div>
+            <div><i class="bi bi-geo-alt-fill event-icon"></i> ${eventData.local}</div>
+            <div><i class="bi bi-coin event-icon"></i> R$${eventData.price.toFixed(2)}</div>
+        </p>
+    `;
+
+    document.querySelector("#login-page").style.display = "none";
+    document.querySelector("#header").style.display = "flex";
+    document.querySelector(".header-hidden-block").style.display = "block";
+    document.querySelector("#home-page").style.display = "none";
+    document.querySelector("#events-page").style.display = "none";
+    document.querySelector("#buy-ticket-page").style.display = "flex";
+}
+
+document.querySelector("#payment-proof").addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const allowedTypes = ["image/png", "image/jpeg", "application/pdf"];
+    if (!allowedTypes.includes(file.type)) {
+        alert("Tipo de arquivo inválido. Envie uma imagem ou PDF.");
+        e.target.value = "";
+        return;
+    }
+
+    const alreadyBought = userTickets.some(ticket => ticket.id === currentEventId);
+    if (alreadyBought) {
+        alert("Você já comprou esse ingresso.");
+        return;
+    }
+
+    const boughtEvent = events.find(ev => ev.id === currentEventId);
+    if (boughtEvent) {
+        userTickets.push(boughtEvent);
+        alert(`Compra simulada com sucesso para o evento: ${boughtEvent.name}`);
+    }
+
+    e.target.value = "";
+    navigateToEventPage();
+    toggleMenu();
+})
 
 function navigateToHome() {
     document.querySelector("#login-page").style.display = "none";
@@ -304,5 +369,6 @@ function navigateToHome() {
     document.querySelector(".header-hidden-block").style.display = "block";
     document.querySelector("#home-page").style.display = "flex";
     document.querySelector("#events-page").style.display = "none";
+    document.querySelector("#buy-ticket-page").style.display = "none";
     toggleMenu();
 }

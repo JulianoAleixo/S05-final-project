@@ -54,6 +54,7 @@ button:hover {
     padding: 16px;
     width: 100%;
     box-shadow: var(--shadow-default);
+    z-index: 2;
 }
 
 #header i {
@@ -498,6 +499,59 @@ td.action-col {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    font-size: 16px;
+}
+
+.back-button {
+    background: var(--color-primary);
+    color: var(--color-content);
+    margin: 0;
+    width: min-content;
+    margin-top: 24px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    gap: 4px;
+}
+
+#buy-ticket-page {
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: calc(100vh - 60px);
+}
+
+.buy-ticket-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.event-card {
+    background: var(--color-base-1);
+    border-radius: 10px;
+    box-shadow: var(--shadow-default);
+}
+
+.event-details {
+    display: flex;
+    flex-direction: column;
+    justify: center;
+    align: center;
+    gap: 8px;
+}
+
+.event-info {
+    margin: 16px 8px 0 8px;
+}
+
+.event-icon {
+    color: var(--color-primary);
 }
 
 /* sm screen */

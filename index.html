@@ -135,7 +135,7 @@
         <main id="events-page" style="display: none">
             <section class="events-container">
                 <h2>Eventos</h2>
-                
+
                 <div class="table-container">
                     <div class="table-wrapper">
                         <table class="responsive-table">
@@ -151,7 +151,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td hidden class="hidden-col event-id">01</td>
+                                    <td hidden class="hidden-col event-id">
+                                        01
+                                    </td>
                                     <td class="max-col">
                                         CPG - Code Pizza & Glory
                                     </td>
@@ -161,11 +163,15 @@
                                         Inatel - Prédio 5, salão de eventos
                                     </td>
                                     <td class="action-col">
-                                        <button class="buy-button">Comprar</button>
+                                        <button class="buy-button">
+                                            Comprar
+                                        </button>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td hidden class="hidden-col event-id">01</td>
+                                    <td hidden class="hidden-col event-id">
+                                        01
+                                    </td>
                                     <td class="max-col">
                                         CPG - Code Pizza & Glory
                                     </td>
@@ -175,26 +181,44 @@
                                         Inatel - Prédio 5, salão de eventos
                                     </td>
                                     <td class="action-col">
-                                        <button class="buy-button">Comprar</button>
+                                        <button class="buy-button">
+                                            Comprar
+                                        </button>
                                     </td>
                                 </tr>
-                                
                             </tbody>
                         </table>
                     </div>
                 </div>
-                
-                <button class="my-tickets-button">
-                    Meus Ingressos
-                </button>
+
+                <button class="my-tickets-button">Meus Ingressos</button>
             </section>
         </main>
 
-        <!-- <main id="buy-event-page" style="display: none">
-            <section class="events-container">
-                <h2>Eventos</h2>
+        <main id="buy-ticket-page" style="display: none">
+            <section class="buy-ticket-container">
+                <h2></h2>
+
+                <div class="card event-card">
+                    <img class="event-image" src="" alt="" />
+                    <div class="event-info info"></div>
+                </div>
+
+                <div class="payment-proof-container">
+                    <label for="payment-proof"
+                        >Anexe o comprovante de pagamento:</label
+                    >
+                    <input
+                        type="file"
+                        id="payment-proof"
+                        name="payment-proof"
+                        accept="image/png, image/jpeg application/pdf"
+                    />
+                </div>
+
+                <button class="back-button" onclick="navigateToEventPage()"><i class="bi bi-arrow-left"></i>Voltar</button>
             </section>
-        </main> -->
+        </main>
 
         <footer id="footer">
             Copyright © 2025 - All right reserved <br />
