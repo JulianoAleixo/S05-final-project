@@ -538,6 +538,13 @@ td.action-col {
     background: var(--color-base-1);
     border-radius: 10px;
     box-shadow: var(--shadow-default);
+    max-width: 60%;
+}
+
+.event-card-container {
+    max-width: 60%;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .event-details {
@@ -550,7 +557,7 @@ td.action-col {
 
 .event-info {
     margin: 16px 8px 0 8px;
-    color: var(--color-base-content-1)
+    color: var(--color-base-content-1);
 }
 
 .event-icon {
@@ -686,7 +693,6 @@ td.action-col {
     color: #fff;
 }
 
-
 @keyframes slideIn {
     from {
         transform: translateX(100%);
@@ -705,13 +711,15 @@ td.action-col {
     }
 }
 
-
 /* sm screen */
 @media (max-width: 640px) {
     #sidebar {
         width: 100%;
     }
     .carousel-container {
+        max-width: calc(100% - 32px);
+    }
+    .event-card-container {
         max-width: calc(100% - 32px);
     }
 }
