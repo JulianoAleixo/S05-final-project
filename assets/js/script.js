@@ -277,6 +277,15 @@ function renderEventsTable() {
     events.forEach((evnt) => {
         const row = document.createElement("tr");
 
+        let buttonHTML = "";
+        if (userTickets.some((ticket) => ticket.id === evnt.id)) {
+            buttonHTML = `<button class="buy-button" onClick="navigateToSeeTicketPage('${evnt.id}')">Visualizar</button>`;
+        } else if (evnt.remaining_tickets > 0) {
+            buttonHTML = `<button class="buy-button" onClick="navigateToBuyTicketPage('${evnt.id}')">Comprar</button>`;
+        } else {
+            buttonHTML = "Ingressos esgotados";
+        }
+
         row.innerHTML = `
       <td hidden class="hidden-col event-id">${evnt.id}</td>
       <td class="max-col">${evnt.name}</td>
@@ -284,7 +293,7 @@ function renderEventsTable() {
       <td class="max-col">${evnt.hour}</td>
       <td class="max-col">${evnt.local}</td>
       <td class="action-col">
-        <button class="buy-button" onClick="navigateToBuyTicketPage('${evnt.id}')">Comprar</button>
+        ${buttonHTML}
       </td>
     `;
 
@@ -303,7 +312,7 @@ function navigateToEventPage() {
     toggleMenu();
 }
 
-function navigateToBuyTicketPage(ticketId) {
+function renderTicketPage(ticketId) {
     const eventData = events.find((event) => event.id === ticketId);
     if (!eventData) return;
 
@@ -321,9 +330,15 @@ function navigateToBuyTicketPage(ticketId) {
         <p>${eventData.description}</p>
         <p>${eventData.remaining_tickets} ingressos restantes.</p>
         <p class="event-details">
-            <div><i class="bi bi-calendar-event event-icon"></i> ${eventData.date} às ${eventData.hour}</div>
-            <div><i class="bi bi-geo-alt-fill event-icon"></i> ${eventData.local}</div>
-            <div><i class="bi bi-coin event-icon"></i> R$${eventData.price.toFixed(2)}</div>
+            <div><i class="bi bi-calendar-event event-icon"></i> ${
+                eventData.date
+            } às ${eventData.hour}</div>
+            <div><i class="bi bi-geo-alt-fill event-icon"></i> ${
+                eventData.local
+            }</div>
+            <div><i class="bi bi-coin event-icon"></i> R$${eventData.price.toFixed(
+                2
+            )}</div>
         </p>
     `;
 
@@ -335,9 +350,28 @@ function navigateToBuyTicketPage(ticketId) {
     document.querySelector("#buy-ticket-page").style.display = "flex";
 }
 
+function navigateToBuyTicketPage(ticketId) {
+    renderTicketPage(ticketId);
+    document.querySelector(".payment-proof-container").style.display = "flex";
+    document.querySelector(".qrcode-container").style.display = "none";
+}
+
+function navigateToSeeTicketPage(ticketId) {
+    renderTicketPage(ticketId);
+    document.querySelector(".payment-proof-container").style.display = "none";
+    document.querySelector(".qrcode-container").style.display = "flex";
+}
+
 document.querySelector("#payment-proof").addEventListener("change", (e) => {
     const file = e.target.files[0];
-    if (!file) return;
+    const fileNameSpan = document.querySelector("#file-name");
+
+    if (file) {
+        fileNameSpan.textContent = file.name;
+    } else {
+        fileNameSpan.textContent = "Nenhum arquivo selecionado";
+        return;
+    }
 
     const allowedTypes = ["image/png", "image/jpeg", "application/pdf"];
     if (!allowedTypes.includes(file.type)) {
@@ -346,13 +380,15 @@ document.querySelector("#payment-proof").addEventListener("change", (e) => {
         return;
     }
 
-    const alreadyBought = userTickets.some(ticket => ticket.id === currentEventId);
+    const alreadyBought = userTickets.some(
+        (ticket) => ticket.id === currentEventId
+    );
     if (alreadyBought) {
         alert("Você já comprou esse ingresso.");
         return;
     }
 
-    const boughtEvent = events.find(ev => ev.id === currentEventId);
+    const boughtEvent = events.find((ev) => ev.id === currentEventId);
     if (boughtEvent) {
         userTickets.push(boughtEvent);
         alert(`Compra simulada com sucesso para o evento: ${boughtEvent.name}`);
@@ -361,7 +397,7 @@ document.querySelector("#payment-proof").addEventListener("change", (e) => {
     e.target.value = "";
     navigateToEventPage();
     toggleMenu();
-})
+});
 
 function navigateToHome() {
     document.querySelector("#login-page").style.display = "none";

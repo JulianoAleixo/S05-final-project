@@ -205,18 +205,34 @@
                 </div>
 
                 <div class="payment-proof-container">
-                    <label for="payment-proof"
-                        >Anexe o comprovante de pagamento:</label
-                    >
+                    <h3>Anexe o comprovante de pagamento:</h3>
+                    <p>
+                        O pagamento deve ser feito via Pix <br />
+                        <span>(CNPJ Finatel: 24.492.886/0001-04)</span>
+                    </p>
+                    <label for="payment-proof" class="upload-label">
+                        <i class="bi bi-upload"></i> Escolher arquivo
+                    </label>
                     <input
                         type="file"
                         id="payment-proof"
                         name="payment-proof"
-                        accept="image/png, image/jpeg application/pdf"
+                        accept="image/png, image/jpeg, application/pdf"
                     />
+
+                    <span id="file-name" class="file-name-display"
+                        >Nenhum arquivo selecionado</span
+                    >
                 </div>
 
-                <button class="back-button" onclick="navigateToEventPage()"><i class="bi bi-arrow-left"></i>Voltar</button>
+                <div class="qrcode-container">
+                    <h3>Esse QR Code te dá acesso ao evento.</h3>
+                    <img class="qr-code" src="assets/images/qrcode.svg" alt="QR Code" />
+                </div>
+
+                <button class="back-button" onclick="navigateToEventPage()">
+                    <i class="bi bi-arrow-left"></i>Voltar
+                </button>
             </section>
         </main>
 

@@ -450,7 +450,7 @@ footer a {
 .responsive-table th,
 .responsive-table td {
     padding: 8px 12px;
-    border-bottom: 1px solid var(--color-base-2);
+    box-shadow: inset 0 -1px 0 var(--color-base-2);
 }
 
 .max-col {
@@ -552,6 +552,85 @@ td.action-col {
 
 .event-icon {
     color: var(--color-primary);
+}
+
+#payment-proof {
+    display: none;
+}
+
+.payment-proof-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.payment-proof-container h3 {
+    font-size: 20px;
+    text-align: center;
+}
+
+.payment-proof-container p {
+    font-size: 16px;
+    text-align: center;
+}
+
+.payment-proof-container p span {
+    font-size: 16px;
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+.upload-label {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    margin: 0 auto;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.upload-label:hover {
+    filter: brightness(80%);
+}
+
+.upload-label i {
+    margin-right: 8px;
+}
+
+.qrcode-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.qrcode-container h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.qrcode-container .qr-code {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    border: 4px solid #000;
+    border-radius: 8px;
+    background-color: white;
+}
+
+/* Nome do arquivo */
+.file-name-display {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #555;
 }
 
 /* sm screen */
